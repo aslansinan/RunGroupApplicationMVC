@@ -1,0 +1,33 @@
+﻿@model Club
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="container">
+    <div class="team-single">
+        <div class="row">
+            <div class="col-lg-4 col-md-5 xs-margin-30px-bottom">
+                <div class="team-single-img">
+                    <img width="100%" height="225px" src="@Model.Image" alt="">
+                </div>
+            </div>
+
+            <div class="col-lg-8 col-md-7">
+                <div class="team-single-text padding-50px-left sm-no-padding-left">
+                    <h4 class="font-size38 sm-font-size32 xs-font-size30">@Model.Title</h4>
+                    <p class="no-margin-bottom">@Model.Description</p>
+                    <h4 class="font-size38 sm-font-size32 xs-font-size30">Location</h4>
+                    <div class="contact-info-section margin-40px-tb">
+                        <ul class="list-style9 no-margin">
+                            <li>@Model.Address.City</li>
+                            <li>@Model.Address.State</li>
+                            <li>@Model.Address.Street</li>
+                            <li>@Model.ClubCategory</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

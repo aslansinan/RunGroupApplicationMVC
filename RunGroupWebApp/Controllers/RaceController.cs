@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RunGroupWebApp.Models;
 
 namespace RunGroupWebApp.Data.Enum
@@ -16,6 +17,12 @@ namespace RunGroupWebApp.Data.Enum
         {
             List<Race> races = _context.Races.ToList();
             return View(races);
+        }
+
+        public IActionResult Detail(int id)
+        {
+            var race = _context.Races.Include(a => a.Address).FirstOrDefault(x => x.Id == id);
+            return View(race);
         }
     }
 }
