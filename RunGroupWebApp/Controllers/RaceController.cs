@@ -1,27 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RunGroupWebApp.Data.Interfaces;
 using RunGroupWebApp.Models;
 
 namespace RunGroupWebApp.Data.Enum
 {
     public class RaceController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public RaceController(ApplicationDbContext context)
+        //private readonly ApplicationDbContext _context;
+        private readonly IRaceRepository _raceRepository;
+
+        public RaceController(/*ApplicationDbContext context,*/ IRaceRepository raceRepository)
         {
-            _context = context;
+            //_context = context;
+            _raceRepository = raceRepository;
         }
 
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Race> races = _context.Races.ToList();
+            IEnumerable<Race> races = await _raceRepository.GetAll();
             return View(races);
         }
 
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            var race = _context.Races.Include(a => a.Address).FirstOrDefault(x => x.Id == id);
+            var race = await _raceRepository.GetByIdAsync(id);
             return View(race);
         }
     }
