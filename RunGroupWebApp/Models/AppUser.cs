@@ -10,8 +10,6 @@ namespace RunGroupWebApp.Models
         public int? Mileage { get; set; }
         [ForeignKey("Address")]
         public int? AddressId { get; set; }
-        [Key]
-        public override string Email { get => base.Email; set => base.Email = value; }
         public Address? Address { get; set; } //one to many
 
         public ICollection<Club> Clubs { get; set; }
