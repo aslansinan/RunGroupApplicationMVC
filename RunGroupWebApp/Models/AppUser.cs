@@ -1,13 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RunGroupWebApp.Models
 {
-    public class AppUser 
+    public class AppUser : IdentityUser
     {
-        [Key]
-        public string Id { get; set; }
         public int? Pace { get; set; }
         public int? Mileage { get; set; }
+        [ForeignKey("Address")]
+        public int? AddressId { get; set; }
+        [Key]
+        public override string Email { get => base.Email; set => base.Email = value; }
         public Address? Address { get; set; } //one to many
 
         public ICollection<Club> Clubs { get; set; }
